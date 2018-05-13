@@ -52,7 +52,9 @@ public class TradfriLightHandler extends TradfriThingHandler {
 
     @Override
     public void onUpdate(JsonElement data) {
-        if (active && !(data.isJsonNull())) {
+	active = (active && !(data.isJsonNull()) && data.getAsJsonArray(LIGHT).isJsonArray() && data.getAsJsonArray(LIGHT).isJsonArray().size()>0);
+
+	if(active) {
             state = new TradfriLightData(data);
             updateStatus(state.getReachabilityStatus() ? ThingStatus.ONLINE : ThingStatus.OFFLINE);
 

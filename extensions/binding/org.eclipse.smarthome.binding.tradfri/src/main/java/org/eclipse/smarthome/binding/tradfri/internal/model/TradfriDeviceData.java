@@ -55,10 +55,9 @@ public abstract class TradfriDeviceData {
             generalInfo = root.getAsJsonObject(DEVICE);
         } catch (JsonSyntaxException e) {
             logger.error("JSON error: {}", e.getMessage(), e);
-        }
         } catch (Exception e) {
-            String content = (json!=null && json.isJsonNull()) ? "null" : json.getAsString();
-            logger.error("Parsing error for "+attributesNodeName+" | "+content, e.getMessage(), e);
+            String content = (json!=null && json.isJsonNull()) ? "null" : json.toString();
+            logger.error("Parsing error for "+attributesNodeName+" || "+content, e.getMessage(), e);
         }
     }
 
